@@ -1,1 +1,1 @@
-go build -o utf16.exe
+go build -o sample.exe
