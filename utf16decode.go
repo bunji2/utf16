@@ -1,4 +1,4 @@
-package main
+package utf16
 
 import (
 	"bytes"
@@ -10,7 +10,7 @@ import (
 )
 
 // ReadFileUTF16 reads file, decodes in utf16, and returns string.
-func ReadFileUTF16(filePath string) (r string, err error) {
+func ReadFileUTF16(filePath string) (r string, bs []byte, err error) {
 
 	var f *os.File
 	f, err = os.Open(filePath)
@@ -19,13 +19,11 @@ func ReadFileUTF16(filePath string) (r string, err error) {
 	}
 	defer f.Close()
 
-	var bs []byte
+	//var bs []byte
 	bs, err = ioutil.ReadAll(f)
 	if err != nil {
 		return
 	}
-
-	printHex(bs)
 
 	r, err = DecodeUTF16(bs)
 	//fmt.Println(r)
